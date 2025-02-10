@@ -17,7 +17,6 @@ export function ProductList() {
     if (error) return <p>Error: {error}</p>;
     return (
         <div className="p-4">
-            <h1>Product List</h1>
             <div className=" grid grid-cols-4 gap-4">
                 {products.map((product: any) => {
                     return (
