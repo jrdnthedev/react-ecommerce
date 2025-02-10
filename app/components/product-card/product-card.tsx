@@ -1,29 +1,17 @@
 "use client";
 
+import { Product } from "@/app/types/types";
 import Image from "next/image";
 
 interface CardProps {
     item: Product;
 }
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: Rating;
-}
-interface Rating {
-    rate: number;
-    count: number;
-}
+
 export function ProductCard({ item }: CardProps) {
 
     return (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                {/* <img src="/docs/images/products/apple-watch.png" alt="product image" /> */}
                 <Image src={item.image} alt="product image" className="p-8 rounded-t-lg" width={300} height={300} />
             </a>
             <div className="px-5 pb-5">
@@ -56,6 +44,5 @@ export function ProductCard({ item }: CardProps) {
                 </div>
             </div>
         </div>
-
     )
 }
