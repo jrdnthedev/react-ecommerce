@@ -1,17 +1,11 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { fetchProducts } from "@/app/redux/slices/productSlice";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { useEffect } from "react";
+import { useAppSelector } from "@/app/hooks";
+import { RootState } from "@/app/redux/store";
 import { ProductCard } from "../product-card/product-card";
 
 export function ProductList() {
-    const dispatch = useAppDispatch<AppDispatch>();
-    const { products, loading, error } = useAppSelector((state: RootState) => state.product);
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+    const { products, loading, error } = useAppSelector((state: RootState) => state.product);
 
     if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -24,7 +18,6 @@ export function ProductList() {
                     );
                 })}
             </div>
-
         </div>
     );
 }
