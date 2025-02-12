@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { removeFromCart } from "@/app/redux/slices/cartSlice";
 import { RootState } from "@/app/redux/store";
 import { Product } from "@/app/types/types";
+import { PriceFormatter } from "@/app/utils/price-formatter";
 
 export function CartList() {
     const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export function CartList() {
                                             </p>
                                         </div>
                                         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                            {item.price}
+                                            {PriceFormatter(item.price)}
                                         </div>
                                     </div>
                                 </li>
