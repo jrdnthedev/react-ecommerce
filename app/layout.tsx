@@ -28,7 +28,7 @@ export default function RootLayout({
         <ReduxProvider>
           <ProductLoader />
           <Navbar />
-          <main>
+          <main className="p-8 mt-16">
             {children}
           </main>
         </ReduxProvider>
