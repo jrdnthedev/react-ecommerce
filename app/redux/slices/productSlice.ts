@@ -16,9 +16,9 @@ const initialState: ProductState = {
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await fetch("/api/products"); // Fetch from API route
-    const data = await response.json(); // Parse JSON data
-    return data; // This will be automatically handled in reducers
+    const response = await fetch("/api/products");
+    const data = await response.json();
+    return data;
   }
 );
 
@@ -43,5 +43,4 @@ const productSlice = createSlice({
   },
 });
 
-// export const { setProducts, setLoading } = productSlice.actions;
 export default productSlice.reducer;
