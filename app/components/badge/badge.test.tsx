@@ -3,7 +3,7 @@ import { Badge } from './badge';
 
 
 
-describe('Badge', () => {
+describe('Badge Component', () => {
 
     it('renders badge', () => {
         render(<Badge quantity={1} />);
