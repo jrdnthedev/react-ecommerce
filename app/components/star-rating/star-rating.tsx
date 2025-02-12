@@ -1,4 +1,3 @@
-import { start } from "repl";
 
 interface StarRatingProps {
     rating: number;
@@ -19,7 +18,6 @@ export function StarRating({ rating }: StarRatingProps) {
                     </svg>
                 );
             } else if (i === fullStars && decimalPart > 0) {
-
                 stars.push(
                     <div key={i} className="relative w-4 h-4">
                         <svg className="absolute w-4 h-4 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
