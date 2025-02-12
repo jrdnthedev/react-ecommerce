@@ -9,6 +9,7 @@ export function ProductList() {
 
     if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
+    console.log(products);
     return (
         <div className="p-4">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

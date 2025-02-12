@@ -1,6 +1,10 @@
+"use client";
+import { useAppSelector } from "@/app/hooks";
+import { RootState } from "@/app/redux/store";
 import Link from "next/link";
 
 export function Navbar() {
+    const quantity = useAppSelector((state: RootState) => state.cart.quantity);
     return (
         <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -20,7 +24,7 @@ export function Navbar() {
                             <Link href='/products' className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</Link>
                         </li>
                         <li>
-                            <Link href='/cart' className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</Link>
+                            <Link href='/cart' className=" relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-3.5 -end-3 dark:border-gray-900">{quantity}</span>Cart</Link>
                         </li>
                     </ul>
                 </div>

@@ -3,9 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface CartState {
   cart: Product[];
+  quantity: number;
 }
 const initialState: CartState = {
   cart: [],
+  quantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -13,26 +15,28 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
+      const exists = state.cart.find(
+        (item: Product) => item.id === action.payload.id
+      );
+      if (!exists) {
+        state.cart.push(action.payload);
+        state.quantity += 1;
+      }
     },
     removeFromCart: (state, action) => {
       state.cart = state.cart.filter(
         (item: Product) => item.id !== action.payload
       );
-    },
-    updateQuantity: (state, action) => {
-      state.cart = state.cart.map((item: Product) =>
-        item.id === action.payload.id
-          ? { ...item, quantity: action.payload.quantity }
-          : item
-      );
+      if (state.quantity > 0) {
+        state.quantity -= 1;
+      }
     },
     clearCart: (state) => {
       state.cart = [];
+      state.quantity = 0;
     },
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } =
-  cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
