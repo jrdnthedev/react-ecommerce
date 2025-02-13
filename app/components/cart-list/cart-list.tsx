@@ -21,7 +21,7 @@ export function CartList() {
                     (<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                         {cart.map((item: Product) => {
                             return (
-                                <li className="py-3 sm:py-4" key={item.id}>
+                                <li className="py-3 sm:py-4" key={item.id} role="listitem">
                                     <div className="flex items-center">
                                         <div className="shrink-0">
                                             <button onClick={() => dispatch(removeFromCart(item.id))} className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400">
@@ -45,7 +45,7 @@ export function CartList() {
                                 </li>
                             );
                         })}
-                        <li className="py-3 sm:py-4">
+                        <li className="py-3 sm:py-4" role="listitem">
                             <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => dispatch(clearCart())}>Clear Cart</button>
                         </li>
                     </ul>)}
