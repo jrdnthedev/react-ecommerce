@@ -2,6 +2,7 @@
 import { useAppSelector } from "@/app/hooks";
 import { RootState } from "@/app/redux/store";
 import { ProductCard } from "../product-card/product-card";
+import { Product } from "@/app/types/types";
 
 export function ProductList() {
 
@@ -12,7 +13,7 @@ export function ProductList() {
     console.log(products);
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {products.map((product: any) => {
+            {products.map((product: Product) => {
                 return (
                     <ProductCard key={product.id} item={product} />
                 );

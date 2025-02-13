@@ -20,7 +20,7 @@ export function ProductCard({ item }: CardProps) {
     }
 
     return (
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full">
+        <div data-testid="product-card" className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full">
             <a href="#" className="inline-block relative w-[300px] h-[300px]">
                 <Image src={item.image} alt="product image" className="p-8 rounded-t-lg object-contain" fill />
             </a>
