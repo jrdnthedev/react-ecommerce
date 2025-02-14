@@ -10,7 +10,7 @@ export function CartList() {
     const { cart } = useAppSelector((state: RootState) => state.cart);
 
     return (
-        <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="col-span-2 sm:col-span-1 lg:col-span-2 p-4 bghite border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <div className="flex items-center justify-between mb-4">
                 <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Items</h5>
             </div>
