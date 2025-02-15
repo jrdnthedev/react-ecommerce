@@ -1,5 +1,5 @@
-describe("My First Test", () => {
-  it("Tests the flow of my application", () => {
+describe("app flow", () => {
+  it("should add product to cart and checkout", () => {
     cy.visit("http://localhost:3000/");
     cy.contains("Products").click();
     cy.url().should("include", "/products");
