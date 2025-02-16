@@ -11,6 +11,7 @@ export function Form() {
         defaultValues: { email: '', password: '' }
     });
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     return (
         <form onSubmit={handleSubmit((data) => {
             console.log(data);
@@ -24,7 +25,7 @@ export function Form() {
             </div>
             <div className="mb-5">
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                <input {...register("password", { required: 'password is required to register' })}
+                <input {...register("password", { required: 'password is required to register', pattern: { value: passwordPattern, message: 'password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number' } })}
                     type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 {errors.password && <p className="text-red-500">{errors.password?.message}</p>}
             </div>
