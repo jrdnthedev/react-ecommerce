@@ -12,3 +12,8 @@ export type Rating = {
   rate: number;
   count: number;
 };
+
+export type RegisterForm = {
+  email: string;
+  password: string;
+};
