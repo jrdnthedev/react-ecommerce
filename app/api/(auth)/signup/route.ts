@@ -1,9 +1,9 @@
 import { connectToDatabase } from "@/app/lib/mongodb";
 import User from "@/app/models/User";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     await connectToDatabase();
     const { email, password, firstName, lastName } = await req.json();
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
 
     try {
       await newUser.save();
+      NextResponse.redirect(new URL("/signin", req.nextUrl));
     } catch (err: any) {
       console.error("Error saving user:", err.message);
       return NextResponse.json({ error: err.message }, { status: 500 });

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const protectedRoutes = ["/products", "/cart", "/checkout"];
-const publicRoutes = ["/login", "/signup", "/"];
+const publicRoutes = ["/login", "/signup"];
 
 export function middleware(req: NextRequest) {
   console.log("Middleware running on:", req.nextUrl);
