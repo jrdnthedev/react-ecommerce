@@ -1,11 +1,31 @@
 "use client";
-import { useAppSelector } from "@/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { RootState } from "@/app/redux/store";
 import Link from "next/link";
 import { Badge } from "../badge/badge";
+import { logout } from "@/app/redux/slices/userSlice";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
     const quantity = useAppSelector((state: RootState) => state.cart.quantity);
+    const user = useAppSelector((state: RootState) => state.user);
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/logout");
+
+            if (response.ok) {
+                dispatch(logout());
+                router.push('/');
+            } else {
+                console.log('Failed to logout');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <nav className="fixed w-full z-20 top-0 start-0 border-b border-gray-400 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -21,15 +41,29 @@ export function Navbar() {
                 </button>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-                        <li>
-                            <Link href='/products' className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</Link>
-                        </li>
-                        <li>
-                            <Link href='/cart' className=" relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{quantity > 0 && <Badge quantity={quantity} />}Cart</Link>
-                        </li>
-                        <li>
-                            <Link href='/signin' className=" relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign In</Link>
-                        </li>
+                        {user.isAuthenticated && (
+                            <>
+                                <li>
+                                    <Link href='/products' className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</Link>
+                                </li>
+                                <li>
+                                    <Link href='/cart' className=" relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">{quantity > 0 && <Badge quantity={quantity} />}Cart</Link>
+                                </li>
+                            </>
+                        )}
+
+                        {user.isAuthenticated ? (
+                            <li>
+                                Hi, {user.user?.firstName}
+                                <button onClick={handleLogout}
+                                    className="ml-2 relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> Sign Out</button>
+                            </li>
+                        ) : (
+                            <li>
+                                <Link href='/signin' className=" relative inline-flex py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign In</Link>
+                            </li>
+                        )}
+
                     </ul>
                 </div>
             </div>

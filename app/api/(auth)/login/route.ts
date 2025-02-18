@@ -34,7 +34,12 @@ export async function POST(req: NextRequest) {
     });
 
     const response = NextResponse.json(
-      { message: `User found successfully`, success: true, data: token },
+      {
+        message: `User found successfully`,
+        success: true,
+        data: token,
+        user: user,
+      },
       { status: 200 }
     );
 

@@ -1,8 +1,10 @@
 "use client";
+import { setUser } from "@/app/redux/slices/userSlice";
 import { RegisterForm } from "@/app/types/types";
 import axios from "axios";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 export function SignInForm() {
     const {
@@ -12,6 +14,7 @@ export function SignInForm() {
     } = useForm<RegisterForm>({
         defaultValues: { email: '', password: '' }
     });
+    const dispatch = useDispatch();
 
     async function SendPostData(data: RegisterForm) {
         try {
@@ -19,7 +22,8 @@ export function SignInForm() {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 200) {
-                console.log('user signed in successfully');
+                console.log('user signed in successfully', response);
+                dispatch(setUser(response.data.user));
             }
         } catch (err) {
             console.log(err);
