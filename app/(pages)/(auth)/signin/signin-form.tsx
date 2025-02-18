@@ -3,6 +3,7 @@ import { setUser } from "@/app/redux/slices/userSlice";
 import { RegisterForm } from "@/app/types/types";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +16,7 @@ export function SignInForm() {
         defaultValues: { email: '', password: '' }
     });
     const dispatch = useDispatch();
-
+    const router = useRouter();
     async function SendPostData(data: RegisterForm) {
         try {
             const response = await axios.post('/api/login', data, {
@@ -24,6 +25,7 @@ export function SignInForm() {
             if (response.status === 200) {
                 console.log('user signed in successfully', response);
                 dispatch(setUser(response.data.user));
+                router.push('/products');
             }
         } catch (err) {
             console.log(err);
