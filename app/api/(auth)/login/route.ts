@@ -15,8 +15,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
 
     const isPassWordMatch = await bcrypt.compare(password, user.password);
 
