@@ -8,8 +8,6 @@ import { ProductCardSkeleton } from "@/app/ui/skeleton";
 export function ProductList() {
 
     const { products, loading, error } = useAppSelector((state: RootState) => state.product);
-
-    // if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
     console.log(products);
     return (

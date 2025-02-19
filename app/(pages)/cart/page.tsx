@@ -1,5 +1,5 @@
-import { CartList } from "@/app/components/cart-list/cart-list";
-import { Checkout } from "@/app/components/checkout/checkout";
+import { CartList } from "@/app/(pages)/cart/components/cart-list/cart-list";
+import { Checkout } from "@/app/(pages)/cart/components/checkout/checkout";
 
 export default function Cart() {
     return (

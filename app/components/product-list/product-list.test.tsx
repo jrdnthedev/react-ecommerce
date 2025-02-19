@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { ProductList } from "./product-list";
+import Products from "../../(pages)/products/page";
 
 describe('ProductCard Component', () => {
     const productList = [
@@ -29,7 +29,7 @@ describe('ProductCard Component', () => {
         const store = configureStore({ reducer: { product: (state = { products: productList, loading: false, error: null }, action) => state } })
         render(
             <Provider store={store}>
-                <ProductList />
+                <Products />
             </Provider>
         );
         const productCard = screen.getAllByTestId('product-card');
