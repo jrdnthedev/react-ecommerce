@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { Navbar } from "./navbar";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from 'react-redux';
-import { useRouter } from 'next/router';
 
 jest.mock('next/navigation', () => ({
     useRouter() {
