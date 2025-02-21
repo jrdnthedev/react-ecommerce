@@ -12,6 +12,7 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('Navbar Component', () => {
+    const useRouter = jest.spyOn(require("next/navigation"), "useRouter");
 
     it('should render the Navbar component', () => {
         const store = configureStore({ reducer: { user: (state = { user: [] }, action) => state, cart: (state = { cart: [] }, action) => state } });
