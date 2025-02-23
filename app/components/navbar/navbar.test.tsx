@@ -1,18 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { Navbar } from "./navbar";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from 'react-redux';
+import { userEvent } from '@testing-library/user-event';
 
 jest.mock('next/navigation', () => ({
-    useRouter() {
-        return {
-            prefetch: () => null
-        };
-    }
+    useRouter: jest.fn()
 }));
 
 describe('Navbar Component', () => {
-    const useRouter = jest.spyOn(require("next/navigation"), "useRouter");
 
     it('should render the Navbar component', () => {
         const store = configureStore({ reducer: { user: (state = { user: [] }, action) => state, cart: (state = { cart: [] }, action) => state } });
@@ -57,5 +53,37 @@ describe('Navbar Component', () => {
         expect(signoutLink).not.toBeInTheDocument();
         expect(productsLink).not.toBeInTheDocument();
         expect(cartLink).not.toBeInTheDocument();
+    });
+
+    it('should navigate user to products page when products link is clicked', async () => {
+        const store = configureStore({ reducer: { user: (state = { isAuthenticated: true, user: { firstName: 'john' } }, action) => state, cart: (state = { quantity: 2 }, action) => state } });
+        const userEv = userEvent.setup();
+        render(
+            <Provider store={store}>
+                <Navbar />
+            </Provider>
+        );
+        const productsLink = screen.getByRole("link", { name: /products/i });
+        await act(async () => {
+            await userEv.click(productsLink);
+        });
+
+        expect(productsLink).toHaveAttribute("href", "/products");
+    });
+
+    it('should navigate user to cart page when cart link is clicked', async () => {
+        const store = configureStore({ reducer: { user: (state = { isAuthenticated: true, user: { firstName: 'john' } }, action) => state, cart: (state = { quantity: 2 }, action) => state } });
+        const userEv = userEvent.setup();
+        render(
+            <Provider store={store}>
+                <Navbar />
+            </Provider>
+        );
+        const cartLink = screen.getByRole("link", { name: /cart/i });
+        await act(async () => {
+            await userEv.click(cartLink);
+        });
+
+        expect(cartLink).toHaveAttribute("href", "/cart");
     });
 })
