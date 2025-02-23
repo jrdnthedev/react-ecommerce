@@ -58,7 +58,7 @@ export function Navbar() {
                         )}
 
                         {user.isAuthenticated ? (
-                            <li role="listitem">
+                            <li role="listitem" data-testid="user-name">
                                 Hi, {user.user?.firstName}
                                 <button onClick={() => {
                                     handleToggle();
