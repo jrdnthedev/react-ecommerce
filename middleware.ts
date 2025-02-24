@@ -4,9 +4,6 @@ const protectedRoutes = ["/products", "/cart"];
 const publicRoutes = ["/login", "/signup"];
 
 export function middleware(req: NextRequest) {
-  console.log("Middleware running on:", req.nextUrl);
-  console.log("Token from cookies:", req.cookies.get("token")?.value);
-
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
