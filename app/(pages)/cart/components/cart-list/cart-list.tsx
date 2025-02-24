@@ -10,7 +10,7 @@ export function CartList() {
     const { cart } = useAppSelector((state: RootState) => state.cart);
 
     return (
-        <div className="col-span-2 sm:col-span-1 lg:col-span-2 p-4 bghite border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="col-span-2 sm:col-span-1 sm:p-8 lg:col-span-2 p-4 bghite border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
 
             {cart.length === 0 ? (
                 <p>Your cart is empty.</p>
