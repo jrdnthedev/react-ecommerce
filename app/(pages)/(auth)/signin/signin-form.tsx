@@ -24,7 +24,6 @@ export function SignInForm() {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 200) {
-                console.log('user signed in successfully', response);
                 dispatch(setUser(response.data.user));
                 router.push('/products');
             }
