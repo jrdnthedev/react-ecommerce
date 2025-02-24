@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
 
 export function SignInForm() {
     const {
@@ -27,8 +28,10 @@ export function SignInForm() {
                 dispatch(setUser(response.data.user));
                 router.push('/products');
             }
-        } catch (err) {
-            console.log(err);
+        } catch (err: any) {
+            toast(err.response.data.message, {
+                position: "bottom-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined,
+            });
         }
     }
     return (
@@ -57,6 +60,7 @@ export function SignInForm() {
                     Sign Up
                 </Link>
             </div>
+            <ToastContainer />
         </ form>
     )
 }

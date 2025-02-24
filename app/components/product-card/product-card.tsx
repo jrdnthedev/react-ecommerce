@@ -8,7 +8,6 @@ import Image from "next/image";
 import { StarRating } from "../star-rating/star-rating";
 import { PriceFormatter } from "@/app/utils/price-formatter";
 import { ToastContainer, toast } from 'react-toastify';
-import { set } from "mongoose";
 interface CardProps {
     item: Product;
 }
