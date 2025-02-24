@@ -12,5 +12,5 @@ export function ProductLoader() {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    return null; // Doesn't render anything, just loads products
+    return null;
 }

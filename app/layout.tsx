@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "./components/navbar/navbar";
 import { ReduxProvider } from "./redux/ReduxProvider";
 import { ProductLoader } from "./components/product-loader/productLoader";
+import { UserInitializer } from "./components/user-initializer/userInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <ProductLoader />
+          <UserInitializer />
           <Navbar />
           <main className="p-8 mt-16">
             {children}

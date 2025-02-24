@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type User = {
   email: string;
@@ -10,6 +10,19 @@ const initialState = {
   user: null as User | null,
   isAuthenticated: false,
 };
+
+export const initializeUser = createAsyncThunk(
+  "user/initializeUser",
+  async () => {
+    try {
+      const response = await fetch("/api/verify-token");
+      const data = await response.json();
+      return data.user;
+    } catch (error) {
+      return null;
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -23,6 +36,14 @@ const userSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(initializeUser.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.user = action.payload;
+        state.isAuthenticated = true;
+      }
+    });
   },
 });
 
