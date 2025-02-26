@@ -5,7 +5,7 @@ import { initializeUser } from "@/app/redux/slices/userSlice";
 import { AppDispatch } from "@/app/redux/store";
 import { useEffect } from "react";
 
-export function UserInitializer() {
+export default function UserInitializer() {
   const dispatch = useAppDispatch<AppDispatch>();
 
   useEffect(() => {

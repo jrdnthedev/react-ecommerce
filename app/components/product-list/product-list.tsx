@@ -1,11 +1,11 @@
 "use client";
 import { useAppSelector } from "@/app/hooks";
 import { RootState } from "@/app/redux/store";
-import { ProductCard } from "../product-card/product-card";
+import ProductCard from "../product-card/product-card";
 import { Product } from "@/app/types/types";
-import { InfoModal } from "../info-modal/info-modal";
+import InfoModal from "../info-modal/info-modal";
 
-export function ProductList() {
+export default function ProductList() {
 
     const { products, loading, error } = useAppSelector((state: RootState) => state.product);
     if (error) return <InfoModal data={error} />;

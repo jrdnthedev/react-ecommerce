@@ -5,14 +5,14 @@ import { addToCart } from "@/app/redux/slices/cartSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { Product } from "@/app/types/types";
 import Image from "next/image";
-import { StarRating } from "../star-rating/star-rating";
+import StarRating from "../star-rating/star-rating";
 import { PriceFormatter } from "@/app/utils/price-formatter";
 import { ToastContainer, toast } from 'react-toastify';
 interface CardProps {
     item: Product;
 }
 
-export function ProductCard({ item }: CardProps) {
+export default function ProductCard({ item }: CardProps) {
     const dispatch = useAppDispatch<AppDispatch>();
     const cart = useAppSelector((state: RootState) => state.cart.cart ?? []);
 

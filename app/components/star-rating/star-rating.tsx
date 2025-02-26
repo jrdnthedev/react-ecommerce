@@ -3,7 +3,7 @@ interface StarRatingProps {
     rating: number;
 }
 
-export function StarRating({ rating }: StarRatingProps) {
+export default function StarRating({ rating }: StarRatingProps) {
 
     function calculateStars() {
         const stars = [];

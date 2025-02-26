@@ -5,7 +5,7 @@ import { fetchProducts } from "@/app/redux/slices/productSlice";
 import { AppDispatch } from "@/app/redux/store";
 import { useEffect } from "react";
 
-export function ProductLoader() {
+export default function ProductLoader() {
     const dispatch = useAppDispatch<AppDispatch>();
 
     useEffect(() => {

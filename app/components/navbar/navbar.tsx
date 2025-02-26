@@ -2,12 +2,12 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { RootState } from "@/app/redux/store";
 import Link from "next/link";
-import { Badge } from "../badge/badge";
+import Badge from "../badge/badge";
 import { logout } from "@/app/redux/slices/userSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function Navbar() {
+export default function Navbar() {
     const quantity = useAppSelector((state: RootState) => state.cart.quantity);
     const user = useAppSelector((state: RootState) => state.user);
     const dispatch = useAppDispatch();

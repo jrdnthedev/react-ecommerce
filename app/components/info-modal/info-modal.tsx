@@ -3,7 +3,7 @@ interface InfoModalProps {
     data: string;
 }
 
-export function InfoModal({ data }: InfoModalProps) {
+export default function InfoModal({ data }: InfoModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleCloseModal = () => {

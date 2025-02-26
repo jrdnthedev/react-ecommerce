@@ -1,4 +1,4 @@
-import { ProductList } from "@/app/components/product-list/product-list";
+import ProductList from "@/app/components/product-list/product-list";
 import { LoadingSpinnerSkeleton } from "@/app/ui/skeleton";
 import { Suspense } from 'react';
 

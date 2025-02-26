@@ -5,7 +5,7 @@ import { RootState } from "@/app/redux/store";
 import { Product } from "@/app/types/types";
 import { PriceFormatter } from "@/app/utils/price-formatter";
 
-export function CartList() {
+export default function CartList() {
     const dispatch = useAppDispatch();
     const { cart } = useAppSelector((state: RootState) => state.cart);
 
